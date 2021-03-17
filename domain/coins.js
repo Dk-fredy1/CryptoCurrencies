@@ -15,3 +15,21 @@ exports.getAll = (params, requestFn, errors) => requestFn({
   logger.error(`Error: ${inspect(e)}`);
   throw errors.serverError();
 });
+
+exports.getCoin = (id, requestFn, errors) => requestFn({
+  url: serviceUrl,
+  path: `/coins/${id}`,
+  method: 'get',
+  params: {
+    localization: false,
+    tickers: false,
+    market_data: true,
+    community_data: false,
+    developer_data: false,
+    sparkline: false
+  }
+}).catch(e => {
+  logger.error(`Error while querying service coingecko with id ${inspect(id)}`);
+  logger.error(`Error: ${inspect(e)}`);
+  throw errors.serverError();
+});

@@ -15,9 +15,12 @@ const generateToken = user => jwt.sign({
 
 const validateToken = token => jwt.verify(token, config.auth.secret);
 
+const addCoin = (user, coin) => user.addCoin(coin);
+
 module.exports = {
   createOne,
   getByUsername,
   generateToken,
-  validateToken
+  validateToken,
+  addCoin
 };

@@ -7,6 +7,13 @@ const coinsMap = coin => ({
   lastUpdated: coin.last_updated
 });
 
+const coinServiceMap = coin => ({
+  key: coin.id,
+  symbol: coin.symbol,
+  name: coin.name
+});
+
 module.exports = {
-  coinsMap
+  coinsMap,
+  coinServiceMap
 };

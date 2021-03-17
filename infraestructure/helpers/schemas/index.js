@@ -71,3 +71,15 @@ exports.validateLoginSchema = {
     }
   }
 };
+
+exports.validateAddCoinSchema = {
+  coinId: {
+    in: ['params'],
+    isString: { errorMessage: typeError({ key: 'coinId', type: 'string' }) },
+    trim: true,
+    isEmpty: {
+      negated: true,
+      errorMessage: keyNotExist('coinId')
+    }
+  }
+};
