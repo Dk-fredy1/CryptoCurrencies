@@ -4,40 +4,40 @@ const {
   Model
 } = require('sequelize');
 
-const createHooks = User => {
-  User.encryptPassword = plainText => crypto
+const createHooks = Users => {
+  Users.encryptPassword = plainText => crypto
     .createHash('RSA-SHA256')
     .update(plainText)
     .digest('hex');
 
-  User.prototype.validatePassword = function validatePassword(enteredPassword) {
-    const encryptPass = User.encryptPassword(enteredPassword);
+  Users.prototype.validatePassword = function validatePassword(enteredPassword) {
+    const encryptPass = Users.encryptPassword(enteredPassword);
     return encryptPass === this.password();
   };
 
   const setPassword = user => {
     if (user.changed('password')) {
-      user.password = User.encryptPassword(user.password());
+      user.password = Users.encryptPassword(user.password());
     }
   };
 
-  User.beforeCreate(setPassword);
-  User.beforeUpdate(setPassword);
+  Users.beforeCreate(setPassword);
+  Users.beforeUpdate(setPassword);
 };
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Users extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.User.belongsToMany(models.Coin, { through: 'users_coins' });
-      createHooks(models.User);
+      models.Users.belongsToMany(models.Coins, { through: 'users_coins' });
+      createHooks(models.Users);
     }
   }
-  User.init({
+  Users.init({
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -64,8 +64,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'User'
+    modelName: 'Users'
   });
 
-  return User;
+  return Users;
 };
