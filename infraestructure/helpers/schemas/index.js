@@ -52,3 +52,22 @@ exports.validateUsersCreateSchema = {
     }
   }
 };
+
+exports.validateLoginSchema = {
+  username: {
+    in: ['body'],
+    trim: true,
+    isEmpty: {
+      negated: true,
+      errorMessage: keyNotExist('mail')
+    }
+  },
+  password: {
+    in: ['body'],
+    trim: true,
+    isEmpty: {
+      negated: true,
+      errorMessage: keyNotExist('password')
+    }
+  }
+};

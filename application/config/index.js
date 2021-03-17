@@ -19,7 +19,7 @@ const loadConfig = configLoad => {
 const config = {
   environment: process.env.ENVIRONMENT,
   api: {
-    port: process.env.PORT
+    baseUrl: process.env.COIN_BASE_URL
   },
   database: {
     username: process.env.DB_USERNAMEDB,
