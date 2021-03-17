@@ -1,5 +1,3 @@
-const { CURRENCY_DEFAULT } = require('../config/constants');
-
 const internalError = (message, internalCode) => ({
   message,
   internalCode
@@ -20,7 +18,8 @@ exports.DATABASE_ERROR = 'DATABASE_ERROR';
 
 exports.badRequest = message => internalError(message, exports.BAD_REQUEST);
 exports.schemaError = message => internalError(message, exports.SCHEMA_ERROR);
+exports.typeErrorCustom = ({ key, type, message }) => `The key ${key} must be ${type} or ${message}`;
 exports.typeError = ({ key, type }) => `The key ${key} must be ${type}`;
 exports.keyNotExist = key => `The key ${key} must be exist`;
-exports.invalidCurrency = currency => `The value "${currency}" is invalid, must be one of "${CURRENCY_DEFAULT.join(', ')}".`;
+exports.invalidOption = (value, options) => `The value "${value}" is invalid, must be one of "${options.join(', ')}".`;
 exports.serverError = message => internalError(message, exports.SERVER_ERROR);

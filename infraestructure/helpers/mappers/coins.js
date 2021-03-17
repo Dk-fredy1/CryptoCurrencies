@@ -13,7 +13,20 @@ const coinServiceMap = coin => ({
   name: coin.name
 });
 
+const coinsTopServiceMap = coin => ({
+  symbol: coin.data.symbol,
+  current_price: {
+    ars: coin.data.market_data.current_price.ars,
+    usd: coin.data.market_data.current_price.usd,
+    eur: coin.data.market_data.current_price.eur
+  },
+  name: coin.data.name,
+  image: coin.data.image.thumb,
+  lastUpdated: coin.data.last_updated
+});
+
 module.exports = {
   coinsMap,
-  coinServiceMap
+  coinServiceMap,
+  coinsTopServiceMap
 };

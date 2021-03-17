@@ -18,7 +18,7 @@ router
       res.status(200).send({ token });
     } catch (e) {
       logger.error(`Error creating type ${inspect(e)}`);
-      next(badRequest(e.name || 'bad request'));
+      next(badRequest(e.message || 'bad request'));
     }
   });
 

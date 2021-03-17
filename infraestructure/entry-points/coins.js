@@ -29,7 +29,7 @@ router
       res.status(200).send({ data: coinsReponse });
     } catch (e) {
       logger.error(`Error get all currencies ${inspect(e)}`);
-      next(badRequest(e.name || 'bad request'));
+      next(badRequest(e.message || 'bad request'));
     }
   });
 

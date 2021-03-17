@@ -1,5 +1,7 @@
-const { typeError, keyNotExist, invalidCurrency } = require('../../../application/errors');
-const { CURRENCY_DEFAULT } = require('../../../application/config/constants');
+const {
+  typeError, keyNotExist, invalidOption, typeErrorCustom
+} = require('../../../application/errors');
+const { CURRENCY_DEFAULT, ORDERS } = require('../../../application/config/constants');
 
 exports.validateUsersCreateSchema = {
   firstName: {
@@ -44,7 +46,7 @@ exports.validateUsersCreateSchema = {
     trim: true,
     custom: {
       options: value => value && CURRENCY_DEFAULT.includes(value.toLowerCase()),
-      errorMessage: value => invalidCurrency(value || 'empty value')
+      errorMessage: value => invalidOption(value || 'empty value', CURRENCY_DEFAULT)
     },
     isEmpty: {
       negated: true,
@@ -81,5 +83,26 @@ exports.validateAddCoinSchema = {
       negated: true,
       errorMessage: keyNotExist('coinId')
     }
+  }
+};
+
+exports.validateGetCoinsSchema = {
+  top: {
+    in: ['query'],
+    trim: true,
+    custom: {
+      options: value => value && Number(value) && value > 0 && value <= 25,
+      errorMessage: typeErrorCustom({ key: 'top', type: 'int', message: 'the number must be between 1 and 25' })
+    }
+  },
+  order: {
+    in: ['query'],
+    isString: { errorMessage: typeError({ key: 'order', type: 'string' }) },
+    trim: true,
+    custom: {
+      options: value => value && ORDERS.includes(value.toLowerCase()),
+      errorMessage: value => invalidOption(value || 'empty value', ORDERS)
+    },
+    optional: { options: { nullable: true } }
   }
 };
