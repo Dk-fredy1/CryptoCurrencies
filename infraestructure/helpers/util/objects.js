@@ -64,3 +64,10 @@ exports.countDaysLeft = date => {
   const days = Math.round(date.getTime() - present_date.getTime()) / one_day;
   return days.toFixed(0);
 };
+
+exports.orderArrayCurrency = (arr, limit, order, currency) => {
+  const sort = arr.sort((a, b) => (
+    order === 'asc' ? a.current_price[currency] - b.current_price[currency] : b.current_price[currency] - a.current_price[currency]
+  ));
+  return sort.slice(0, limit);
+};
