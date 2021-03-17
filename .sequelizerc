@@ -1,0 +1,7 @@
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('application', 'config', 'db', 'index.js'),
+  'migrations-path': path.resolve('migrations', 'migrations'),
+  'models-path': path.resolve('infraestructure', 'driven-adapters', 'sequelize')
+}
