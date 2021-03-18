@@ -58,16 +58,9 @@ exports.assignObject = (target, source) => {
   return spec;
 };
 
-exports.countDaysLeft = date => {
-  const one_day = 1000 * 60 * 60 * 24;
-  const present_date = new Date();
-  const days = Math.round(date.getTime() - present_date.getTime()) / one_day;
-  return days.toFixed(0);
-};
-
 exports.orderArrayCurrency = (arr, limit, order, currency) => {
   const sort = arr.sort((a, b) => (
-    order === 'asc' ? a.current_price[currency] - b.current_price[currency] : b.current_price[currency] - a.current_price[currency]
+    order === 'asc' ? a.currentPrice[currency] - b.currentPrice[currency] : b.currentPrice[currency] - a.currentPrice[currency]
   ));
   return sort.slice(0, limit);
 };
