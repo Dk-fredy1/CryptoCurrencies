@@ -15,7 +15,7 @@ const coinServiceMap = coin => ({
 
 const coinsTopServiceMap = coin => ({
   symbol: coin.data.symbol,
-  current_price: {
+  currentPrice: {
     ars: coin.data.market_data.current_price.ars,
     usd: coin.data.market_data.current_price.usd,
     eur: coin.data.market_data.current_price.eur

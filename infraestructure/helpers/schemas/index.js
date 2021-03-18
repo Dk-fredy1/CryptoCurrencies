@@ -61,7 +61,7 @@ exports.validateLoginSchema = {
     trim: true,
     isEmpty: {
       negated: true,
-      errorMessage: keyNotExist('mail')
+      errorMessage: keyNotExist('username')
     }
   },
   password: {

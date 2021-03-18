@@ -36,7 +36,7 @@ router
     try {
       logger.info('Associating currency to a user');
       await userRepository.addCoin(req.user, req.coin);
-      res.status(201).send();
+      res.status(200).send();
     } catch (e) {
       logger.error(`Error associating currency to a user ${inspect(e)}`);
       next(badRequest(e.message || 'bad request'));
