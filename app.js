@@ -8,7 +8,7 @@ const app = express();
 module.exports = startup
   .start(app)
   .then(([config]) => {
-    const { port } = config.api;
+    const { port } = config;
 
     if (!config.isTesting) {
       app.listen(port);

@@ -18,6 +18,7 @@ const loadConfig = configLoad => {
 
 const config = {
   environment: process.env.ENVIRONMENT,
+  port: process.env.PORT,
   api: {
     baseUrl: process.env.COIN_BASE_URL
   },
