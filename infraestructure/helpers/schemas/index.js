@@ -58,6 +58,7 @@ exports.validateUsersCreateSchema = {
 exports.validateLoginSchema = {
   username: {
     in: ['body'],
+    isString: { errorMessage: typeError({ key: 'username', type: 'string' }) },
     trim: true,
     isEmpty: {
       negated: true,
@@ -66,6 +67,7 @@ exports.validateLoginSchema = {
   },
   password: {
     in: ['body'],
+    isString: { errorMessage: typeError({ key: 'password', type: 'string' }) },
     trim: true,
     isEmpty: {
       negated: true,
